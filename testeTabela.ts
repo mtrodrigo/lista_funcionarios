@@ -1,0 +1,56 @@
+
+export const tabelaTeste = [
+    {
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    },
+    {
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    },
+    {
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    },
+    {
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    },
+    {
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    },{
+        nome: 'Rodrigo Marques Tavares',
+        cpf: 11122233344,
+        email: 'rodrigour@gmail.com',
+        endereco: 'Rua Aureliano Prado',
+        numEndereco: 34,
+        cidade: 'Paraguaçu',
+        Estado: 'MG',
+    }
+]

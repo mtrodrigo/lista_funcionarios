@@ -1,9 +1,11 @@
+import DenseTable from "../../components/table"
+export function Home() {
 
-
-export function Home(){
-    return(
-        <main>
-            tabelas
+   
+    return (
+        <main className="w-full mx-auto flex flex-col items-center justify-center gap-5 py-5">
+            <h1 className="text-zinc-400 text-2xl">Lista de funcionários cadastrados</h1>
+            <DenseTable  />
         </main>
     )
 }
