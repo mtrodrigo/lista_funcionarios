@@ -27,7 +27,7 @@ export default function DenseTable() {
     const [funcionarios, setFuncionarios] = useState<funcionariosData[]>([])
 
     useEffect(() => {
-        function loadFuncionarios() {
+        async function loadFuncionarios() {
             const funcionariosRef = collection(db, 'funcionarios')
             const queryFuncionarios = query(funcionariosRef, orderBy('nome', 'asc'))
             getDocs(queryFuncionarios)
