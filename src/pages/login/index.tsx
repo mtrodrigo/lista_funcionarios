@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { auth } from '../../services/firebaseConnection'
 import { signOut, signInWithEmailAndPassword } from 'firebase/auth'
 import { Input } from '../../components/input';
-import { Button, Snackbar, Box } from '@mui/material';
+import { Button } from '@mui/material';
 
 const schema = z.object({
     email: z.string().email('E-mail inválido').nonempty('Campo obrigatório'),
