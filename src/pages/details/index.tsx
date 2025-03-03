@@ -28,7 +28,7 @@ export function Details(){
 
     return(
         <div className="w-full my-50">
-            <section className="w-full max-w-xl flex flex-col bg-zinc-400 mx-auto">
+            <section className="w-full max-w-xl flex flex-col bg-zinc-300 rounded-xl mx-auto px-3 py-2">
                 {!funcionario ? <h2>Carregando...</h2> : (
                     <>
                         <h2 className="text-xl font-bold text-center border-b border-b-zinc-500">{funcionario.nome}</h2>

@@ -15,11 +15,11 @@ import { db } from '../../services/firebaseConnection';
 export interface funcionariosData {
     id: string | number,
     nome: string,
-    cpf: number,
+    cpf: number | string,
     email: string,
     endereco?: string,
-    numero?: number,
-    telefone?: number
+    numero?: number | string,
+    telefone?: number | string
 }
 
 export default function DenseTable() {
