@@ -8,14 +8,9 @@ import { signOut, signInWithEmailAndPassword } from 'firebase/auth'
 import { Input } from '../../components/input';
 import { Button } from '@mui/material';
 
-export const schema = z.object({
+const schema = z.object({
     email: z.string().email('E-mail inválido').nonempty('Campo obrigatório'),
-    password: z.string().nonempty('Digite a senha'),
-    nome: z.string().nonempty('Campo obrigatório'),
-    cpf: z.string().max(11, 'Deve conter 11 caracteres').nonempty('Campo obrigatório'),
-    telefone: z.string().max(11, 'Deve contenter no máximo 11 caracteres').nonempty('Campo obrigatório'),
-    endereco: z.string().nonempty('Campo obrigatório'),
-    numero: z.string().nonempty('Campo obrigatório')
+    password: z.string().nonempty('Digite a senha')
 })
 type FormData = z.infer<typeof schema>;
 

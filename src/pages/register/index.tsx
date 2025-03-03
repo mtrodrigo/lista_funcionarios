@@ -1,14 +1,23 @@
 import { Input } from "../../components/input"
 import { Button, Paper, Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from "@mui/material"
-import { schema } from '../login'
 import { z } from 'zod';
 import { useState, useEffect } from 'react';
-import { collection, query, orderBy, getDocs } from "firebase/firestore";
+import { collection, query, orderBy, getDocs, addDoc, doc, deleteDoc } from "firebase/firestore";
 import { db } from "../../services/firebaseConnection";
 import { funcionariosData } from "../../components/table";
 import { zodResolver } from '@hookform/resolvers/zod/src/zod.js';
 import { useForm } from 'react-hook-form';
 import { FaRegTrashCan } from "react-icons/fa6";
+import { toast } from 'react-hot-toast'
+
+const schema = z.object({
+    nome: z.string().nonempty('Campo obrigatório'),
+    cpf: z.string().max(11, 'No máximo 11 caracteres').nonempty('Campo obrigatório'),
+    email: z.string().email('E-mail inválido').nonempty('Campo obrigatório'),
+    endereco: z.string().nonempty('Campo obrigatório'),
+    numero: z.string().nonempty('Campo obrigatório'),
+    telefone: z.string().max(11, 'No máximo 11 caracteres').nonempty('Campo obrigatório'),
+})
 
 type FormData = z.infer<typeof schema>;
 
@@ -16,9 +25,9 @@ export function Register() {
 
     const [funcionarios, setFuncionarios] = useState<funcionariosData[]>([])
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const {register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema),
-        mode: 'onChange'
+        mode: 'onSubmit'
     })
 
     useEffect(() => {
@@ -42,12 +51,30 @@ export function Register() {
         loadFuncionarios()
     }, [])
 
+    const handleRegister = (data: FormData) => {
+        const funcionariosRef = collection(db, 'funcionarios')
+        addDoc(funcionariosRef, data)
+        .then(() => {
+            window.location.reload()
+        })
+        .catch((error) => {
+            console.log(error); 
+        })
+         
+    }
+    
+    async function handleDelete(id: string) {
+        const docRef = doc(db, 'funcionarios', id)
+        await deleteDoc(docRef)
+        window.location.reload()
+        toast.success('Funcionário deletado com sucesso')
+    }
 
     return (
         <main className="bg-zinc-400 w-full max-w-md flex flex-col gap-1 items-center justify-center mx-auto p-4 rounded-xl my-10">
             <h1 className="text-xl text-center">Cadastro</h1>
-            <form>
-                <div>
+            <form onSubmit={handleSubmit(handleRegister)}>
+                <div className="flex flex-col gap-2">
                     <div>
                         <label>Nome</label>
                         <Input
@@ -135,7 +162,7 @@ export function Register() {
                                         <TableCell align="center">{funcionario.cpf}</TableCell>
                                         <TableCell align="center">{funcionario.email}</TableCell>
                                         <TableCell>
-                                            <button>
+                                            <button className="cursor-pointer" onClick={() => handleDelete(funcionario.id)}>
                                                 <FaRegTrashCan />
                                             </button>
                                         </TableCell>

@@ -4,6 +4,7 @@ import { Details } from "./pages/details";
 import { Register } from "./pages/register";
 import { Login } from "./pages/login";
 import { Layout } from "./components/layout";
+import { Private } from "./routes/private";
 
 const router = createBrowserRouter([
   {
@@ -19,7 +20,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/register',
-        element: <Register />
+        element: <Private><Register /></Private>
       },
       {
         path: '/login',

@@ -13,7 +13,7 @@ import { db } from '../../services/firebaseConnection';
 
 
 export interface funcionariosData {
-    id: string | number,
+    id: string,
     nome: string,
     cpf: number | string,
     email: string,

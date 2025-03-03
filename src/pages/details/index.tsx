@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import { funcionariosData } from "../../components/table"
 import { getDoc, doc } from "firebase/firestore"
 import { db } from "../../services/firebaseConnection"
@@ -28,7 +28,7 @@ export function Details(){
 
     return(
         <div className="w-full my-50">
-            <section className="w-full max-w-xl flex flex-col bg-zinc-300 rounded-xl mx-auto px-3 py-2">
+            <section className="w-full max-w-md flex flex-col gap-1 bg-zinc-300 rounded-xl mx-auto px-3 py-2">
                 {!funcionario ? <h2>Carregando...</h2> : (
                     <>
                         <h2 className="text-xl font-bold text-center border-b border-b-zinc-500">{funcionario.nome}</h2>
@@ -36,6 +36,7 @@ export function Details(){
                         <p>E-mail: {funcionario.email}</p>
                         <p>Endereço: {funcionario.endereco}, nº: {funcionario.numero}</p>
                         <p>Telefone: {funcionario.telefone}</p>
+                        <Link className="text-blue-500 text-center" to='/login'>Editar</Link>
                     </>
                 )}
             </section>
