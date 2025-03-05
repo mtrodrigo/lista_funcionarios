@@ -72,6 +72,7 @@ export function Register() {
     async function handleEdit(id: string) {
         console.log(id);
         setEdit(true)
+        console.log(edit);
     }
 
     return (
