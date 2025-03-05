@@ -33,14 +33,14 @@ export function Login() {
     const onSubmit = (data: FormData) => {
         signInWithEmailAndPassword(auth, data.email, data.password)
             .then(() => {
-                navigate('/register')
+                navigate('/')
             }).catch((err) => {
                 setError(true)
                 console.log(err);
             })
     }
-
-
+        
+       
     return (
         <div>
             <form

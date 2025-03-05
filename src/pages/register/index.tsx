@@ -8,7 +8,7 @@ import { funcionariosData } from "../../components/table";
 import { zodResolver } from '@hookform/resolvers/zod/src/zod.js';
 import { useForm } from 'react-hook-form';
 import { FaRegTrashCan } from "react-icons/fa6";
-import { toast } from 'react-hot-toast'
+import { MdEdit } from "react-icons/md";
 
 const schema = z.object({
     nome: z.string().nonempty('Campo obrigatório'),
@@ -24,8 +24,9 @@ type FormData = z.infer<typeof schema>;
 export function Register() {
 
     const [funcionarios, setFuncionarios] = useState<funcionariosData[]>([])
+    const [edit, setEdit] = useState(false)
 
-    const {register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
         resolver: zodResolver(schema),
         mode: 'onSubmit'
     })
@@ -54,24 +55,27 @@ export function Register() {
     const handleRegister = (data: FormData) => {
         const funcionariosRef = collection(db, 'funcionarios')
         addDoc(funcionariosRef, data)
-        .then(() => {
-            window.location.reload()
-        })
-        .catch((error) => {
-            console.log(error); 
-        })
-         
+            .then(() => {
+                window.location.reload()
+            })
+            .catch((error) => {
+                console.log(error);
+            })
+
     }
-    
+
     async function handleDelete(id: string) {
         const docRef = doc(db, 'funcionarios', id)
         await deleteDoc(docRef)
         window.location.reload()
-        toast.success('Funcionário deletado com sucesso')
+    }
+    async function handleEdit(id: string) {
+        console.log(id);
+        setEdit(true)
     }
 
     return (
-        <main className="bg-zinc-400 w-full max-w-md flex flex-col gap-1 items-center justify-center mx-auto p-4 rounded-xl my-10">
+        <main className="bg-zinc-400 w-full max-w-xl flex flex-col gap-1 items-center justify-center mx-auto p-4 rounded-xl my-10">
             <h1 className="text-xl text-center">Cadastro</h1>
             <form onSubmit={handleSubmit(handleRegister)}>
                 <div className="flex flex-col gap-2">
@@ -162,9 +166,14 @@ export function Register() {
                                         <TableCell align="center">{funcionario.cpf}</TableCell>
                                         <TableCell align="center">{funcionario.email}</TableCell>
                                         <TableCell>
-                                            <button className="cursor-pointer" onClick={() => handleDelete(funcionario.id)}>
-                                                <FaRegTrashCan />
-                                            </button>
+                                            <div className="flex gap-3">
+                                                <button className="cursor-pointer p-1 hover:border border-zinc-500" onClick={() => handleDelete(funcionario.id)}>
+                                                    <FaRegTrashCan />
+                                                </button>
+                                                <button className="cursor-pointer p-1 hover:border border-zinc-500" onClick={() => handleEdit(funcionario.id)}>
+                                                    <MdEdit />
+                                                </button>
+                                            </div>
                                         </TableCell>
                                     </TableRow>
                                 ))}

@@ -20,8 +20,6 @@ export function Details(){
             })
         }
         loadFuncionario()
-        console.log(funcionario);
-        
     }, [id])
 
 
@@ -36,7 +34,7 @@ export function Details(){
                         <p>E-mail: {funcionario.email}</p>
                         <p>Endereço: {funcionario.endereco}, nº: {funcionario.numero}</p>
                         <p>Telefone: {funcionario.telefone}</p>
-                        <Link className="text-blue-500 text-center" to='/login'>Editar</Link>
+                        <Link className="text-blue-500 text-center" to='/register'>Editar</Link>
                     </>
                 )}
             </section>
